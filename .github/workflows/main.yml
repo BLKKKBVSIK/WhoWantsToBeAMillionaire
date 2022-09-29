@@ -1,0 +1,22 @@
+name: Build example
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    name: Build example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - uses: bluefireteam/flutter-gh-pages@v8
+        with:
+          workingDir: .
+          webRenderer: canvaskit
+          baseHref: /my_personal_website/
